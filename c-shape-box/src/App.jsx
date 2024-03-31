@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Box = ({ index, handleClick, color }) => (
   <div
@@ -32,13 +32,14 @@ const App = () => {
 
   // Check if all boxes are green
   const allBoxesGreen = boxColors.every((color) => color === "green");
-  if (allBoxesGreen) {
-    revertColors();
-  }
+  useEffect(() => {
+    if (allBoxesGreen) {
+      revertColors();
+    }
+  }, [allBoxesGreen]);
 
   return (
     <div className="container">
-      <h1>Sanket</h1>
       {boxColors.map((color, index) => (
         <Box
           key={index}
